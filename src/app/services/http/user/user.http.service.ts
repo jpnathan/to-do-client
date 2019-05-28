@@ -3,7 +3,7 @@ import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class UserService extends HttpService {
+export class UserHttpService extends HttpService {
   constructor(
     protected http: HttpClient
   ) {

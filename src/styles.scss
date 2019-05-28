@@ -11,3 +11,7 @@ body {
 .container-centralized {
   width: 60%;
 }
+
+.ng-touched .ng-invalid{
+  border-color: red;
+}
