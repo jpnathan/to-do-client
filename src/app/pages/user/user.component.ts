@@ -49,7 +49,6 @@ export class UserComponent implements OnInit {
     try {
       this.userHttpService.createUser(this.form.value)
         .then(result => {
-          console.log(result)
           this.form.reset();
           this.route.navigate(['/']);
         }).catch(error => {

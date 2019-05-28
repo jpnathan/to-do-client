@@ -1,9 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { UserHttpService } from './user/user.http.service';
+import { AuthHttpService } from './auth/auth.http.service';
 
 @NgModule({
   providers: [
-    UserHttpService
+    UserHttpService,
+    AuthHttpService
   ]
 })
 export class HttpServiceModule {
