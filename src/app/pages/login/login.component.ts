@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
 
     try {
       this.authHttpService.auth(this.form.value)
-        .then(result => {
-          this.route.navigate(['/projects']);
+        .then(async () => {
+          await this.route.navigate(['/projects']);
         }).catch(error => {
         this.toastrService.error(error.error.message);
       });

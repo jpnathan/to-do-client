@@ -8,10 +8,15 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ServicesModule } from './services/services.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PagesModule } from './pages/pages.module';
+import { LoginComponent } from './pages/login/login.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    PagesModule.forRoot(),
     SharedModule.forRoot(),
     ServicesModule.forRoot()
   ],

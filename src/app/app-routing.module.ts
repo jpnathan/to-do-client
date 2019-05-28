@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { UserComponent } from './pages/user/user.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: './pages/login/login.module#LoginModule'
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'user',
-    loadChildren: './pages/user/user.module#UserModule'
+    component: UserComponent
   },
   {
-    path: 'projects',
-    loadChildren: './pages/project/project.module#ProjectModule'
+    path: '',
+    loadChildren: './pages/layout/layout.module#LayoutModule'
   }
 ];
 
