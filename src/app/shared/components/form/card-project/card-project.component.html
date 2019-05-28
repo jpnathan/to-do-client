@@ -1,20 +1,50 @@
 <div class="card">
-  <div class="card-header">
-    <span> Project Name </span>
+  <div class="card-header d-table" *ngIf="!isEditing">
+    <span> {{ project.name | uppercase}} </span>
+    <i
+      class="fas fa-trash-alt d-table-cell action-icon cursor-pointer"
+      (click)="deleteProject(project.projectId)">
+    </i>
+    <i class="fas fa-pen d-table-cell action-icon cursor-pointer"
+       (click)="editProject()">
+    </i>
+  </div>
+
+  <div class="card-header input-group" *ngIf="isEditing">
+    <input
+      type="text"
+      class="form-control"
+      [value]="projectName"
+      [(ngModel)]="projectName"
+      (blur)="updateProject(project.projectId)">
+    <button class="btn btn-outline-success" type="button">Ok</button>
   </div>
 
   <div class="card-body">
-    <app-checkbox-task></app-checkbox-task>
+    <div *ngIf="tasks && tasks.length">
+      <div *ngFor="let task of tasks; trackBy: trackByIndex">
+        <app-checkbox-task
+          [task]="task"
+          (childEmitter)="getTasks()">
+        </app-checkbox-task>
+      </div>
+    </div>
   </div>
 
   <div class="card-footer">
-    <div class="form-group">
-      <label> New Task </label>
-      <input type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <button type="button" class="btn btn-success"> Create </button>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Task"
+        [(ngModel)]="taskName">
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-success" type="button"
+          (click)="createTask()">
+          Add
+        </button>
+      </div>
     </div>
   </div>
 </div>

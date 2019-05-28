@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from './components/components.module';
 import { ToastrModule } from 'ngx-toastr';
+import { DirectivesModule } from './directives/directives.module';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
+    DirectivesModule,
     ToastrModule.forRoot()
   ],
   exports: [

@@ -1,6 +1,9 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 :root {
   height: 100%;
   width: 100%;
+  font-family: "Montserrat", "sans-serif";
 }
 
 body {
@@ -14,4 +17,12 @@ body {
 
 .ng-touched .ng-invalid{
   border-color: red;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
 }

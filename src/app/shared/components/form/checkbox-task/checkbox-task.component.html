@@ -1,6 +1,24 @@
-<div class="form-group">
-  <label>
+<div *ngIf="!isEditing">
+  <label class="d-table">
     <input type="checkbox">
-    <span> Nova task </span>
+    <span> {{ task.description }} </span>
+    <i
+      class="fas fa-trash-alt d-table-cell task-icon cursor-pointer p-1"
+      (click)="deleteTask(task.taskId)">
+    </i>
+    <i
+      class="fas fa-pen d-table-cell task-icon cursor-pointer"
+      (click)="editTask()">
+    </i>
   </label>
+</div>
+
+<div class="input-group" *ngIf="isEditing">
+  <input
+    type="text"
+    class="form-control"
+    [value]="taskDescription"
+    [(ngModel)]="taskDescription"
+    (blur)="updateTask(task.taskId)">
+  <button class="btn btn-outline-success" type="button">Ok</button>
 </div>

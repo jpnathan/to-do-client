@@ -1,15 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+import { TaskHttpService } from '../../../../services';
+import { ITasks } from '../../../../pages/contracts';
 
 @Component({
   selector: 'app-checkbox-task',
   templateUrl: './checkbox-task.component.html',
   styleUrls: ['./checkbox-task.component.scss']
 })
-export class CheckboxTaskComponent implements OnInit {
+export class CheckboxTaskComponent {
+  @Input()
+  public task: ITasks;
 
-  constructor() { }
+  @Output()
+  public childEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  ngOnInit() {
+  public taskDescription: string;
+  public isEditing: Boolean = false;
+
+  constructor(
+    private taskHttpService: TaskHttpService
+  ) { }
+
+  public deleteTask(taskId: number) {
+    this.taskHttpService.deleteTask(taskId)
+      .then(() => this.childEmitter.emit());
   }
 
+  public async updateTask(taskId: number) {
+    console.log(this.taskDescription)
+    if (this.taskDescription) {
+      const taskModel = {
+        description: this.taskDescription
+      };
+      await this.taskHttpService.updateTask(taskId, taskModel)
+        .then(task => {
+          this.childEmitter.emit();
+          this.editTask();
+        });
+    }
+  }
+
+  public editTask() {
+    this.taskDescription = this.task.description;
+    this.isEditing = !this.isEditing;
+  }
 }
