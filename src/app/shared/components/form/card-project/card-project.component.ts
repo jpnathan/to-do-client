@@ -22,7 +22,8 @@ export class CardProjectComponent implements OnInit {
   @Output()
   public childEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  public tasks: Array<ITasks>;
+  public tasksDone: Array<ITasks>;
+  public tasksToDo: Array<ITasks>;
   public taskName: string;
   public projectName: string;
   public isEditing: Boolean = false;
@@ -55,7 +56,10 @@ export class CardProjectComponent implements OnInit {
 
   public getTasks() {
     this.taskHttpService.getTasks(this.project.projectId)
-      .then(tasks => this.tasks = tasks.result);
+      .then(tasks => {
+        this.tasksDone = tasks.result.filter((task: ITasks) => !task.enabled);
+        this.tasksToDo = tasks.result.filter((task: ITasks) => task.enabled);
+      });
   }
 
   public createTask() {

@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
       this.userHttpService.createUser(this.form.value)
         .then(result => {
           this.form.reset();
-          this.route.navigate(['/']);
+          this.route.navigate(['/login']);
         }).catch(error => {
           this.toastrService.error(error.error.message);
       });

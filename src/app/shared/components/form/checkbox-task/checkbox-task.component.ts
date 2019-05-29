@@ -32,7 +32,6 @@ export class CheckboxTaskComponent {
   }
 
   public async updateTask(taskId: number) {
-    console.log(this.taskDescription)
     if (this.taskDescription) {
       const taskModel = {
         description: this.taskDescription
@@ -43,6 +42,18 @@ export class CheckboxTaskComponent {
           this.editTask();
         });
     }
+  }
+
+  public changeTaskStatus(taskId: number, value: any) {
+    const taskModel = {
+      enabled: !value.checked
+    };
+
+    !taskModel.enabled && (taskModel['finishDate'] = new Date());
+    this.taskHttpService.updateTask(taskId, taskModel)
+      .then(task => {
+        this.childEmitter.emit();
+      });
   }
 
   public editTask() {

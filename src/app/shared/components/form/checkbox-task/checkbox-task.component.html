@@ -1,12 +1,18 @@
 <div *ngIf="!isEditing">
   <label class="d-table">
-    <input type="checkbox">
+    <input
+      type="checkbox"
+      [checked]="!task.enabled"
+      (click)="changeTaskStatus(task.taskId, $event.target)"
+      [disabled]="!task.enabled">
     <span> {{ task.description }} </span>
     <i
+      *ngIf="task.enabled"
       class="fas fa-trash-alt d-table-cell task-icon cursor-pointer p-1"
       (click)="deleteTask(task.taskId)">
     </i>
     <i
+      *ngIf="task.enabled"
       class="fas fa-pen d-table-cell task-icon cursor-pointer"
       (click)="editTask()">
     </i>

@@ -20,6 +20,11 @@ export class LoginComponent implements OnInit {
     private toastrService: ToastrService
   ) {}
 
+  private static setLocalStorageData(userLogged) {
+    localStorage.setItem('_auth_token', userLogged.result.token);
+    localStorage.setItem('_auth_content', JSON.stringify(userLogged.result.user));
+  }
+
   ngOnInit() {
     this.initForm();
   }
@@ -45,7 +50,8 @@ export class LoginComponent implements OnInit {
 
     try {
       this.authHttpService.auth(this.form.value)
-        .then(async () => {
+        .then(async (userLogged) => {
+          LoginComponent.setLocalStorageData(userLogged);
           await this.route.navigate(['/projects']);
         }).catch(error => {
         this.toastrService.error(error.error.message);
