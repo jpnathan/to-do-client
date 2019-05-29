@@ -12,6 +12,7 @@ import { PagesModule } from './pages/pages.module';
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { CustomHttpInterceptorService } from './interceptors/token.interceptors';
+import { AuthGuard } from './pages/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CustomHttpInterceptorService } from './interceptors/token.interceptors'
     ServicesModule.forRoot()
   ],
   providers: [
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptorService,
